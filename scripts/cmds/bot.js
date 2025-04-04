@@ -1,5 +1,5 @@
 const axios = require("axios");
-
+ 
 module.exports = {
   config: {
     name: "bot",
@@ -9,19 +9,19 @@ module.exports = {
     role: 0,
     category: "no prefix"
   },
-
+ 
   onStart: ({}) => {},
-
+ 
   onReply: async function ({ api, event }) {
     try {
       const reply = event.body.toLowerCase().trim();
       if (!reply) return;
-
+ 
       const response = await axios.get(
         `http://65.109.80.126:20392/sim?type=ask&ask=${encodeURIComponent(reply)}`
       );
       const replyMessage = response.data.data.msg;
-
+ 
       await api.sendMessage(
         replyMessage,
         event.threadID,
@@ -40,11 +40,11 @@ module.exports = {
       console.error(`Failed to get an answer: ${error.message}`);
     }
   },
-
+ 
   onChat: async function ({ api, event }) {
     try {
       const input = event.body.toLowerCase().trim();
-
+ 
       if (input === "bot") {
         const messages = [
           "আহ শুনা আমার তোমার অলিতে গলিতে উম্মাহ😇😘",
@@ -53,7 +53,6 @@ module.exports = {
           "আহ শোনা আমার আমাকে এতো ডাক্তাছো কেনো আসো বুকে আশো🥱",
           "হুম জান তোমার অইখানে উম্মমাহ😷😘",
           "আসসালামু আলাইকুম বলেন আপনার জন্য কি করতে পারি",
-          "আমাকে এতো না ডেকে বস রানা কে একটা গফ দে 🙄",‎
           "🌻🌺💚-আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ-💚🌺🌻" ,
           "আমি এখন রানা বস এর সাথে বিজি আছি আমাকে ডাকবেন না-😕😏 ধন্যবাদ-🤝🌻",
           "আমাকে না ডেকে আমার বস রানা কে একটা জি এফ দাও-😽🫶🌺",
@@ -207,7 +206,7 @@ module.exports = {
         const randomMessage = messages[Math.floor(Math.random() * messages.length)];
         const sender = await api.getUserInfo(event.senderID);
         const username = sender[event.senderID]?.name || "User";
-
+ 
         await api.sendMessage(
           {
             body: `‎╭──────────────╮\n‎│➮❝ ${username} ❞\n‎│──────────────╯\n‎└➤ ${randomMessage}`,
@@ -231,3 +230,4 @@ module.exports = {
     }
   }
 };
+ 
