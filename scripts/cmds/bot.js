@@ -4,10 +4,10 @@ module.exports = {
   config: {
     name: "bot",
     version: "1.2",
-    author: "RANA", //Don't change the credit because I made it. Any problems to contact me. https://facebook.com/100063487970328
+    author: "RANA",
     countDown: 5,
     role: 0,
-    category: "chat"
+    category: "no prefix"
   },
 
   onStart: ({}) => {},
@@ -210,7 +210,7 @@ module.exports = {
 
         await api.sendMessage(
           {
-            body: `‎╭──────────────╮\n‎│➮❝✨ ${username} 🙈❞\n‎│──────────────╯\n‎└➤ ${randomMessage}`,
+            body: `‎╭──────────────╮\n‎│➮❝ ${username} ❞\n‎│──────────────╯\n‎└➤ ${randomMessage}`,
             mentions: [{ tag: username, id: event.senderID }],
           },
           event.threadID,
